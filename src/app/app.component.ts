@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ListGenerator, EmployeeData } from '../shared/list-generator.service';
-import { Names } from '../shared/names';
+import { ListGenerator, EmployeeData } from './shared/list-generator.service';
+import { Names } from './shared/names';
 
 const NumRange: [number, number] = [23, 28];
 
