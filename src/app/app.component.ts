@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { List } from 'immutable';
 
-import { ListGenerator, EmployeeData } from '../shared/list-generator.service';
+import { ListGenerator, EmployeeData } from './shared/list-generator.service';
 
 import { Rnd } from './data/rnd-70-27-30';
 import { Sales } from './data/sales-70-27-30';

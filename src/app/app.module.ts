@@ -4,9 +4,9 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-import { EmployeeListModule } from '../employee-list/employee-list.module';
+import { EmployeeListModule } from './employee-list/employee-list.module';
 
-import { ListGenerator } from '../shared/list-generator.service';
+import { ListGenerator } from './shared/list-generator.service';
 
 @NgModule({
   imports: [BrowserModule, EmployeeListModule],
