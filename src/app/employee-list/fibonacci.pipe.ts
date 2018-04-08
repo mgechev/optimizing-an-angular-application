@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+import memo from 'memo-decorator';
+
 const fibonacci = (num: number): number => {
   if (num === 1 || num === 2) {
     return 1;
@@ -12,6 +14,7 @@ const fibonacci = (num: number): number => {
   name: 'fibonacci'
 })
 export class FibonacciPipe implements PipeTransform {
+  @memo()
   transform(value: any, args?: any): any {
     return fibonacci(value);
   }
