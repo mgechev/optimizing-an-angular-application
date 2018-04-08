@@ -1,0 +1,22 @@
+.empty-list-label {
+  font-size: 13px;
+  color: #999;
+  text-align: center;
+  font-style: italic;
+}
+
+.name {
+  font-size: 25px;
+}
+
+.data {
+  margin-left: 25px;
+}
+
+i.fa-trash-o {
+  cursor: pointer;
+}
+
+mat-chip-list {
+  margin-right: 15px;
+}
