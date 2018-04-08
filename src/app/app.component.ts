@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { List } from 'immutable';
 
 import { ListGenerator, EmployeeData } from '../shared/list-generator.service';
 
@@ -13,36 +14,36 @@ const NumRange: [number, number] = [23, 28];
     <sd-employee-list
       [data]="salesList"
       department="Sales"
-      (add)="add(salesList, $event)"
-      (remove)="remove(salesList, $event)"
+      (add)="salesList = add(salesList, $event)"
+      (remove)="salesList = remove(salesList, $event)"
     ></sd-employee-list>
 
     <sd-employee-list
       [data]="rndList"
       department="R&D"
-      (add)="add(rndList, $event)"
-      (remove)="remove(rndList, $event)"
+      (add)="rndList = add(rndList, $event)"
+      (remove)="rndList = remove(rndList, $event)"
     ></sd-employee-list>
   `,
   styleUrls: ['app.component.css']
 })
 export class AppComponent implements OnInit {
-  salesList: EmployeeData[];
-  rndList: EmployeeData[];
+  salesList: List<EmployeeData>;
+  rndList: List<EmployeeData>;
   label: string;
 
   constructor(private generator: ListGenerator) {}
 
   ngOnInit() {
-    this.salesList = Sales;
-    this.rndList = Rnd;
+    this.salesList = List(Sales);
+    this.rndList = List(Rnd);
   }
 
   add(list: EmployeeData[], name: string) {
-    list.unshift({ label: name, num: this.generator.generateNumber(NumRange) });
+    return list.unshift({ label: name, num: this.generator.generateNumber(NumRange) });
   }
 
   remove(list: EmployeeData[], node: EmployeeData) {
-    list.splice(list.indexOf(node), 1);
+    return list.splice(list.indexOf(node), 1);
   }
 }

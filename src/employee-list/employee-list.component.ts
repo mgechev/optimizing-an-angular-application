@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { List } from 'immutable';
 
 import { EmployeeData } from '../shared/list-generator.service';
 
@@ -11,6 +12,7 @@ const fibonacci = (num: number): number => {
 
 @Component({
   selector: 'sd-employee-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <h1 title="Department">{{ department }}</h1>
 
@@ -19,7 +21,7 @@ const fibonacci = (num: number): number => {
     </mat-form-field>
 
     <mat-list>
-      <div *ngIf="data.length === 0" class="empty-list-label">Empty list</div>
+      <div *ngIf="data.size === 0" class="empty-list-label">Empty list</div>
       <mat-list-item *ngFor="let item of data">
         <h3 matLine title="Name">
           {{ item.label }}
@@ -31,13 +33,13 @@ const fibonacci = (num: number): number => {
         </mat-chip-list>
         <i title="Delete" class="fa fa-trash-o" aria-hidden="true" (click)="remove.emit(item)"></i>
       </mat-list-item>
-      <mat-divider *ngIf="data.length !== 0"></mat-divider>
+      <mat-divider *ngIf="data.size !== 0"></mat-divider>
     </mat-list>
   `,
   styleUrls: ['employee-list.component.css']
 })
 export class EmployeeListComponent {
-  @Input() data: EmployeeData[];
+  @Input() data: List<EmployeeData>;
   @Input() department: string;
 
   @Output() remove = new EventEmitter<EmployeeData>();
