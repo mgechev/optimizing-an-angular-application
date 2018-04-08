@@ -6,7 +6,7 @@
     </h3>
     <mat-chip-list>
       <mat-chip title="Score" class="mat-chip mat-primary mat-chip-selected" color="primary" selected="true">
-        {{ calculate(item.num) }}
+        {{ item.num | fibonacci }}
       </mat-chip>
     </mat-chip-list>
     <i title="Delete" class="fa fa-trash-o" aria-hidden="true" (click)="remove.emit(item)"></i>

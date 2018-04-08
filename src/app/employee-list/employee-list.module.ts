@@ -7,6 +7,7 @@ import { MatFormFieldModule, MatInputModule, MatListModule, MatCommonModule, Mat
 import { EmployeeListComponent } from './employee-list.component';
 import { ListComponent } from './list/list.component';
 import { NameInputComponent } from './name-input/name-input.component';
+import { FibonacciPipe } from './fibonacci.pipe';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { NameInputComponent } from './name-input/name-input.component';
     MatInputModule,
     MatChipsModule
   ],
-  declarations: [EmployeeListComponent, ListComponent, NameInputComponent],
+  declarations: [EmployeeListComponent, ListComponent, NameInputComponent, FibonacciPipe],
   exports: [EmployeeListComponent]
 })
 export class EmployeeListModule {}
