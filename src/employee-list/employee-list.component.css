@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  padding: 0 16px;
+  max-width: 500px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.empty-list-label {
+  font-size: 13px;
+  color: #999;
+  text-align: center;
+  font-style: italic;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 35px;
+}
+
+.name {
+  font-size: 25px;
+}
+
+.data {
+  margin-left: 25px;
+}
+
+i.fa-trash-o {
+  cursor: pointer;
+}
+
+mat-form-field {
+  margin-left: 15px;
+  width: calc(100% - 30px);
+}
+
+mat-chip-list {
+  margin-right: 15px;
+}
