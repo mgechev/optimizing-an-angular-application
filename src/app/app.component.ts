@@ -41,12 +41,22 @@ export class AppComponent implements OnInit {
 
   private buffer: Command[];
 
-  constructor(private generator: ListGenerator, private service: EmployeeService) {}
+  constructor(
+    private generator: ListGenerator,
+    private service: EmployeeService,
+    private zone: NgZone,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.salesList = List(Sales);
     this.rndList = List(Rnd);
-    this.service.commands$.subscribe(c => this.handleCommand(c));
+    this.zone.runOutsideAngular(() => {
+      this.service.commands$.pipe(buffer(Observable.interval(1000))).subscribe(m => {
+        m.forEach(c => this.handleCommand(c));
+        this.cd.detectChanges();
+      });
+    });
   }
 
   add(list: EmployeeData[], name: string) {
