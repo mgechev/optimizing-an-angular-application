@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { EmployeeListModule } from './employee-list/employee-list.module';
 
 import { ListGenerator } from './shared/list-generator.service';
+import { EmployeeService } from './shared/employee.service';
 
 @NgModule({
   imports: [BrowserModule, EmployeeListModule],
-  providers: [ListGenerator],
+  providers: [ListGenerator, EmployeeService],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })

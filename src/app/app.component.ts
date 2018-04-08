@@ -1,10 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
 import { List } from 'immutable';
 
 import { ListGenerator, EmployeeData } from './shared/list-generator.service';
+import { Names } from './shared/names';
 
 import { Rnd } from './data/rnd-70-27-30';
 import { Sales } from './data/sales-70-27-30';
+import { EmployeeService, Command } from './shared/employee.service';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+
+import { buffer } from 'rxjs/operators';
 
 const NumRange: [number, number] = [23, 28];
 
@@ -32,11 +39,14 @@ export class AppComponent implements OnInit {
   rndList: List<EmployeeData>;
   label: string;
 
-  constructor(private generator: ListGenerator) {}
+  private buffer: Command[];
+
+  constructor(private generator: ListGenerator, private service: EmployeeService) {}
 
   ngOnInit() {
     this.salesList = List(Sales);
     this.rndList = List(Rnd);
+    this.service.commands$.subscribe(c => this.handleCommand(c));
   }
 
   add(list: EmployeeData[], name: string) {
@@ -45,5 +55,17 @@ export class AppComponent implements OnInit {
 
   remove(list: EmployeeData[], node: EmployeeData) {
     return list.splice(list.indexOf(node), 1);
+  }
+
+  private handleCommand(m: Command) {
+    let list = 'rndList';
+    if (m.department === 'sales') {
+      list = 'salesList';
+    }
+    if (m.action === 'add') {
+      this[list] = this.add(this[list], this.generator.generateLabel(Names));
+    } else {
+      this[list] = this.remove(this[list], this[list].get(Math.floor(Math.random() * this[list].size)));
+    }
   }
 }
