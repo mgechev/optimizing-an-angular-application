@@ -3,6 +3,7 @@ import { List } from 'immutable';
 
 import { ListGenerator, EmployeeData } from './shared/list-generator.service';
 import { Names } from './shared/names';
+<<<<<<< HEAD
 
 import { Rnd } from './data/rnd-70-27-30';
 import { Sales } from './data/sales-70-27-30';
@@ -12,6 +13,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 
 import { buffer } from 'rxjs/operators';
+=======
+>>>>>>> 687f2b9e864c16bda345009c42a724ca42c91b08
 
 const NumRange: [number, number] = [23, 28];
 
